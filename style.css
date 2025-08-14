@@ -1,0 +1,271 @@
+/* --- General & Font Setup --- */
+:root {
+    --primary-color: #4a2c2a; /* Dark Chocolate */
+    --secondary-color: #8d5b4c; /* Milk Chocolate */
+    --accent-color: #e9c46a; /* Golden Caramel */
+    --bg-color: #f4f1ea; /* Creamy White */
+    --text-color: #3d3d3d;
+    --card-bg: #ffffff;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+/* --- Recipe Card Container --- */
+.recipe-card {
+    display: flex;
+    max-width: 900px;
+    width: 100%;
+    background: var(--card-bg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* --- Image & Title Section (Left Side) --- */
+.recipe-image-section {
+    flex: 1.2;
+    position: relative;
+    min-height: 550px;
+}
+
+.recipe-image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.recipe-title-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: white;
+    box-sizing: border-box;
+}
+
+.recipe-title-overlay h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.recipe-info {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.9rem;
+}
+
+/* --- Details Section (Right Side) --- */
+.recipe-details-section {
+    flex: 2;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--bg-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.section-toggle h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.toggle-btn {
+    background: none;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.content-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 0 1.5rem 0;
+    overflow: hidden;
+    max-height: 500px; /* Adjust as needed */
+    transition: max-height 0.7s ease-in-out;
+}
+
+.content-list.collapsed {
+    max-height: 0;
+    margin-bottom: 0;
+}
+
+.content-list li {
+    padding: 0.7rem 0.5rem;
+    border-bottom: 1px solid #eee;
+    transition: all 0.3s ease;
+}
+
+.content-list li:hover {
+    background-color: #f9f9f9;
+    transform: translateX(5px);
+}
+
+/* --- Cooking Controls --- */
+.cooking-controls {
+    margin-top: auto; /* Pushes controls to the bottom */
+    padding-top: 1rem;
+}
+
+.progress-container {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: var(--accent-color);
+    border-radius: 4px;
+    transition: width 0.5s ease-in-out;
+}
+
+#start-cooking-btn, #next-step-btn {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#start-cooking-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#start-cooking-btn:hover {
+    background-color: #3a2220;
+}
+
+#next-step-btn {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+#next-step-btn:hover {
+    background-color: #754c3e;
+}
+
+.active-step {
+    background-color: #fffbeB; /* Light yellow */
+    font-weight: bold;
+    color: var(--primary-color);
+    border-left: 4px solid var(--accent-color);
+}
+
+.hidden {
+    display: none !important;
+}
+
+#timer-display {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-top: 1rem;
+}
+
+/* --- Utility Button (Print) --- */
+.utility-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.utility-btn:hover {
+    transform: scale(1.1);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    .recipe-card {
+        flex-direction: column;
+        max-width: 400px;
+    }
+    .recipe-image-section {
+        min-height: 250px;
+    }
+    .recipe-title-overlay h1 {
+        font-size: 2rem;
+    }
+    .recipe-details-section {
+        padding: 1.5rem;
+    }
+    .utility-btn {
+        display: none; /* Hide print button on mobile for cleaner UI */
+    }
+}
+
+/* --- Print Styles --- */
+@media print {
+    body {
+        background: none;
+        padding: 0;
+    }
+    .recipe-card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        max-width: 100%;
+    }
+    .utility-btn, .toggle-btn, .cooking-controls, .recipe-image-section {
+        display: none !important;
+    }
+    .recipe-details-section {
+        padding: 1cm;
+    }
+    .content-list, .content-list.collapsed {
+        max-height: none; /* Ensure lists are visible */
+        display: block;
+    }
+    h1, h2, p, li {
+        color: black;
+    }
+}
